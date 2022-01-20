@@ -19,7 +19,9 @@ import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
-    private val RecordAudioRequestCode = 1
+    companion object {
+        private const val REQUEST_CODE_AUDIO = 100
+    }
 
     private lateinit var btnStart: Button
     private lateinit var tvResult: TextView
@@ -125,7 +127,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkPermissionRecordAudio() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.RECORD_AUDIO),
-            RecordAudioRequestCode)
+            REQUEST_CODE_AUDIO)
         }
     }
 
@@ -135,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == RecordAudioRequestCode && grantResults.size > 0) {
+        if (requestCode == REQUEST_CODE_AUDIO && grantResults.size > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
             }
