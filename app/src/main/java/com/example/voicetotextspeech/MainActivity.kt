@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 startListening()
             }
-
-            Toast.makeText(this, "click", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -140,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_AUDIO && grantResults.size > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                startListening()
             }
         }
     }
